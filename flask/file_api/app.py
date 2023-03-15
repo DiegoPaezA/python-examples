@@ -9,6 +9,7 @@ list_files = []
 def home():
     return "Create File API"
 
+# Endpoint to create a file
 @app.route("/create_file", methods=["POST"])
 def create_file():
     post_res = request.get_json()
@@ -21,10 +22,15 @@ def create_file():
         Mensagem= "Lista de Arquivos Criados",
         Data = list_files)
     
+# Endpoint to list all the files created   
 @app.route("/file_list", methods=["GET"])
 def read_filelist():
-    return jsonify(list_files)
-
+    if list_files:
+        return jsonify(list_files)
+    else:
+        return jsonify("Nenhum arquivo foi criado")
+    
+# Endpoint to read a file
 @app.route("/read_file", methods=["POST"])
 def read_file():
     post_res = request.get_json()
@@ -35,7 +41,8 @@ def read_file():
     return jsonify(
         Mensagem= "Leitura do Arquivo",
         Data = contents)
-
+    
+# Endpoint to update a file
 @app.route("/update_file", methods=["POST"])
 def update_file():
     post_res = request.get_json()
