@@ -7,7 +7,7 @@ A API deve ser capaz de:
 - Requisição para atualizar um arquivo txt;
 
 Utilizando POST enviamos para http://127.0.0.1:5000/update_file
-```
+```json
 {
     "mensagem": "Arquivo editado",
     "data": [
