@@ -16,5 +16,5 @@ Cliente faz uma solicitação para editar um .txt que já existe. O server faz a
 
 ## Rodar o projeto
 
-1. Execute o arquivo [app.py](flask/file_api/app.py) para iniciar o servidor.
-2. O arquivo [client_site](flask/file_api/client_site.ipynb) contém um exemplo de como interagir com à API.
+1. Execute o arquivo [app.py](app.py) para iniciar o servidor.
+2. O arquivo [client_site](client_site.ipynb) contém um exemplo de como interagir com à API.
