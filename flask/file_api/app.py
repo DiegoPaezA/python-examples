@@ -73,7 +73,7 @@ def update_file():
     
     with open(filename, "a") as f:
         f.write(f" {message}")
-    f.close()    
+    f.close()
     with open(filename, "r") as f:
         contents = f.readlines()
     f.close()    
