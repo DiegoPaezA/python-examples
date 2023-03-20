@@ -27,7 +27,7 @@ def create_file():
     list_files.append(filename)
     with open(filename, "w") as f:
         f.write(f"O Arquivo criado foi {filename}")
-        
+    f.close()    
     return jsonify(
         Mensagem= "Lista de Arquivos Criados",
         Arquivos = list_files)
@@ -53,6 +53,7 @@ def read_file():
         
     with open(filename, "r") as f:
         contents = f.readlines()
+    f.close()
         
     return jsonify(
         Mensagem= "Leitura do Arquivo",
@@ -72,10 +73,10 @@ def update_file():
     
     with open(filename, "a") as f:
         f.write(f" {message}")
-        
+    f.close()    
     with open(filename, "r") as f:
         contents = f.readlines()
-        
+    f.close()    
     return jsonify(
         Mensagem= "Arquivo Atualizado",
         Data = contents)
