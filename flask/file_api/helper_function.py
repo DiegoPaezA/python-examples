@@ -1,5 +1,6 @@
 import os
 import pandas as pd
+import json
 
 def check_file_exists(file_name: str):
     """
@@ -53,3 +54,22 @@ def check_file_type(filename:str):
         return "txt"
     else:
         return "other"
+    
+def filter_csv(filename:str, column:str, value:float):
+    """
+    Function to filter a csv file by a column and a value
+
+    Args:
+        filename (str): filename to be filtered
+        columns (str): column to be filtered
+        value (float): value to be filtered
+
+    Returns:
+        pd.DataFrame: filtered dataframe
+    """
+    filename_path = "files/" + filename
+    data_frame = pd.read_csv(filename_path)
+    data_frame = data_frame[data_frame[column] < value]
+    result = data_frame.to_json(orient="split", index=False)
+
+    return result
