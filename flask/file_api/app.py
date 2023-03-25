@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify, render_template
 import helper_function as hf
-from dummy_data import films, images
+from dummy_data import images
 import glob
 import random
 
@@ -71,22 +71,32 @@ def update_file():
     post_res = request.get_json()
     filename = post_res.get("file_name")
     message = post_res.get("message")
+    mode = post_res.get("mode")
     filename_path = "files/" + filename
     
     if hf.check_file_exists(filename_path) == False:
         return jsonify(
             Mensagem= "Arquivo nao existe, por favor escolha outro nome",
             Arquivos = list_files)
-    
-    with open(filename_path, "a") as f:
-        f.write(f" {message}")
-    f.close()
-    with open(filename_path, "r") as f:
-        contents = f.readlines()
-    f.close()    
-    return jsonify(
-        Mensagem= "Arquivo Atualizado",
-        Data = contents)
+    else:
+        if hf.check_file_type(filename) == "csv":
+            if mode == "w":
+                hf.add_data_to_csv(filename,data=message, mode="w")
+                contents = "Arquivo CSV prenchido"
+            else:
+                hf.add_data_to_csv(filename,data=message, mode="a")
+                contents = "Arquivo CSV atualizado"
+            
+        elif hf.check_file_type(filename) == "txt":
+            with open(filename_path, "a") as f:
+                f.write(f" {message}")
+            f.close()
+            with open(filename_path, "r") as f:
+                contents = f.readlines()
+            f.close()
+                
+    return jsonify(Mensagem= "Arquivo Atualizado",
+                   Data = contents)    
     
         
 app.run()
