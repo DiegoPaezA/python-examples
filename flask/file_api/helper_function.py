@@ -18,12 +18,12 @@ def check_file_exists(file_name: str):
     else:
         return False
     
-def add_data_to_csv(data:dict, filename:str, mode:str="w"):
+def add_data_to_csv(filename:str, data:dict, mode:str="w"):
     """_summary_
 
     Args:
-        data (dict): data to be added to the csv file
         filename (str): filename to be created or appended
+        data (dict): data to be added to the csv file
         mode (str, optional): Select between "w" to write or "a" to append. Defaults to "w".
     """
     filename_path = "files/" + filename
