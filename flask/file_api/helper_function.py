@@ -1,7 +1,6 @@
 import os
 import pandas as pd
 
-
 def check_file_exists(file_name: str):
     """
     This function helps to check if the file that the user is trying to create
@@ -19,7 +18,8 @@ def check_file_exists(file_name: str):
         return False
     
 def add_data_to_csv(filename:str, data:dict, mode:str="w"):
-    """_summary_
+    """
+    Function to add data to a csv file
 
     Args:
         filename (str): filename to be created or appended
@@ -35,7 +35,8 @@ def add_data_to_csv(filename:str, data:dict, mode:str="w"):
         data_frame.to_csv(filename_path, index=False, header=False, mode="a")
         
 def check_file_type(filename:str):
-    """_summary_
+    """
+    Function to check the file type
 
     Args:
         filename (str): filename to be checked
