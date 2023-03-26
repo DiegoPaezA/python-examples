@@ -1,6 +1,5 @@
 import os
 import pandas as pd
-import json
 
 def check_file_exists(file_name: str):
     """
