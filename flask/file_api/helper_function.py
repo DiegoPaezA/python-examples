@@ -65,11 +65,31 @@ def filter_csv(filename:str, column:str, value:float):
         value (float): value to be filtered
 
     Returns:
-        pd.DataFrame: filtered dataframe
+        result: filtered json
     """
     filename_path = "files/" + filename
     data_frame = pd.read_csv(filename_path)
     data_frame = data_frame[data_frame[column] < value]
+    result = data_frame.to_json(orient="split", index=False)
+
+    return result
+
+def filter_range_csv(filename:str, value1:int, value2:int):
+    """
+    Function to filter a csv file by a column and a range of values
+
+    Args:
+        filename (str): filename to be filtered
+        columns (str): column to be filtered
+        value1 (int): lower value to be filtered
+        value2 (int): upper value to be filtered
+
+    Returns:
+        result: filtered json
+    """
+    filename_path = "files/" + filename
+    data_frame = pd.read_csv(filename_path)
+    data_frame = data_frame.loc[value1:value2]
     result = data_frame.to_json(orient="split", index=False)
 
     return result
