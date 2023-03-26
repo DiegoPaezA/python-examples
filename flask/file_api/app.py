@@ -3,6 +3,7 @@ import helper_function as hf
 from dummy_data import images
 import glob
 import random
+import os
 
 app = Flask(__name__)
 app.config['JSON_SORT_KEYS'] = False
@@ -10,6 +11,10 @@ app.config['JSON_SORT_KEYS'] = False
 
 # check if file.txt exists if not empty list
 list_files = glob.glob('files/*') # list of files created
+
+# check if files folder exists if not create it
+if(hf.check_file_exists("files")==False):
+    os.mkdir("files")
 
 @app.route("/") # home page
 def index():
