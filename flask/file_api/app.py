@@ -119,7 +119,30 @@ def filter_data():
         elif hf.check_file_type(filename) == "txt":
             contents = "A funcao nao esta disponivel para arquivos txt"
                 
-    return contents  
+    return contents
+
+@app.route("/filter_range", methods=["POST"])
+def filter_range():
+    post_res = request.get_json()
+    filename = post_res.get("file_name")
+    filter = post_res.get("filter")
+    filename_path = "files/" + filename
+    
+    if hf.check_file_exists(filename_path) == False:
+        return jsonify(
+            Mensagem= "Arquivo nao existe, por favor escolha outro nome",
+            Arquivos = list_files)
+    else:
+        if hf.check_file_type(filename) == "csv":
+           value1 = filter.get("value1")
+           value2 = filter.get("value2")
+           contents = hf.filter_range_csv(filename, value1, value2)
+ 
+            
+        elif hf.check_file_type(filename) == "txt":
+            contents = "A funcao nao esta disponivel para arquivos txt"
+                
+    return contents
     
         
 app.run()
