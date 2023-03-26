@@ -8,13 +8,13 @@ import os
 app = Flask(__name__)
 app.config['JSON_SORT_KEYS'] = False
 
-
-# check if file.txt exists if not empty list
-list_files = glob.glob('files/*') # list of files created
-
 # check if files folder exists if not create it
 if(hf.check_file_exists("files")==False):
     os.mkdir("files")
+    
+# check if file.txt exists if not empty list
+list_files = glob.glob('files/*') # list of files created
+
 
 @app.route("/") # home page
 def index():
