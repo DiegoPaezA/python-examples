@@ -33,6 +33,10 @@ def add_data_to_csv(filename:str, data:dict, mode:str="w"):
         data_frame.to_csv(filename_path, index=False)
     elif mode == "a":
         data_frame.to_csv(filename_path, index=False, header=False, mode="a")
+    
+    result = data_frame.to_json(orient="split", index=False)
+
+    return result
         
 def check_file_type(filename:str):
     """
