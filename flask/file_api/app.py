@@ -86,11 +86,11 @@ def update_file():
     else:
         if hf.check_file_type(filename) == "csv":
             if mode == "w":
-                hf.add_data_to_csv(filename,data=message, mode="w")
-                contents = "Arquivo CSV prenchido"
+                contents = hf.add_data_to_csv(filename,data=message, mode="w")
+                status_msn = "Arquivo CSV prenchido com:"
             else:
-                hf.add_data_to_csv(filename,data=message, mode="a")
-                contents = "Arquivo CSV atualizado"
+                contents = hf.add_data_to_csv(filename,data=message, mode="a")
+                status_msn = "Arquivo CSV atualizado com:"
             
         elif hf.check_file_type(filename) == "txt":
             with open(filename_path, "a") as f:
@@ -99,8 +99,9 @@ def update_file():
             with open(filename_path, "r") as f:
                 contents = f.readlines()
             f.close()
+            status_msn = "Arquivo TXT atualizado com:"
                 
-    return jsonify(Mensagem= "Arquivo Atualizado",
+    return jsonify(Mensagem= status_msn,
                    Data = contents)
     
 @app.route("/filter_data", methods=["POST"])
