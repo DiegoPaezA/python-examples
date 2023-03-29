@@ -82,7 +82,7 @@ def update_file():
     if hf.check_file_exists(filename_path) == False:
         return jsonify(
             Mensagem= "Arquivo nao existe, por favor escolha outro nome",
-            Arquivos = list_files)
+            Data = list_files)
     else:
         if hf.check_file_type(filename) == "csv":
             if mode == "w":
@@ -94,11 +94,9 @@ def update_file():
             
         elif hf.check_file_type(filename) == "txt":
             with open(filename_path, "a") as f:
-                f.write(f" {message}")
+                f.write(f"{message},")
             f.close()
-            with open(filename_path, "r") as f:
-                contents = f.readlines()
-            f.close()
+            contents = message
             status_msn = "Arquivo TXT atualizado com:"
                 
     return jsonify(Mensagem= status_msn,
