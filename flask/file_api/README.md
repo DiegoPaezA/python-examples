@@ -34,3 +34,21 @@ Cliente faz uma solicitação para editar um .txt que já existe. O server faz a
 
 1. Execute o arquivo [app.py](app.py) para iniciar o servidor.
 2. O arquivo [client_site](client_site.ipynb) contém um exemplo de como interagir com à API.
+
+--
+
+## Docker File
+
+Para compilar a imagem do docker e rodar o container é necessário ter o docker instalado na máquina. Para instalar o docker, siga as instruções do site oficial: https://docker-curriculum.com/#introduction
+
+
+1. Para compilar a imagem do docker, execute o comando abaixo:
+
+```
+docker build -t yourusername/apifile .
+```
+2. Para rodar o container, execute o comando abaixo:
+
+```
+docker run -p 8888:5000 yourusername/apifile
+```
