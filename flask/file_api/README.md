@@ -36,7 +36,7 @@ Cliente faz uma solicitação para editar um .txt que já existe. O server faz a
 1. Execute o arquivo [app.py](app.py) para iniciar o servidor.
 2. O arquivo [client_site](client_site.ipynb) contém um exemplo de como interagir com à API.
 
---
+---
 
 ## Rodar o projeto com Docker
 
