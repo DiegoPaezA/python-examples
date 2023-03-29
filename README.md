@@ -1,15 +1,15 @@
 # Ejemplos Básicos de Python
 
-## 1. Flask
+## 1. [Flask](flask/README.md)
 
-- [file api](flask/file_api): Ejemplo de la creación de una API con Flask que permite crear, leer y escribir archivos en el sistema de archivos del servidor - test in wsl.
+- [file api](flask/file_api): Ejemplo de la creación de una API con Flask que permite crear, leer y escribir archivos en el sistema de archivos del servidor - test in wsl. Adicionalmente incluye un archivo `Dockerfile` para crear una imagen de Docker con la API.
 - [api flask example](flask/api_flask_example): Ejemplo de la creación de una API con Flask que permite leer y actualizar datos de un archivo JSON.
 - [cashman-flask-project](flask/cashman-flask-project): Ejemplo de la creación de una API con Flask que actualizar los valores de gastos e ingresos de un usuario.
 
 ## 2. SQL
 
 
-## 3. MPI
+## 3. [MPI](mpi/README.md)
 
 - [collective communication](mpi/collective_com): Ejemplo de la comunicación colectiva en MPI.
 - [point to point communication](mpi/point2point_com): Ejemplo de la comunicación punto a punto en MPI.
