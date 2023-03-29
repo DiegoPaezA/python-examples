@@ -8,3 +8,9 @@
 
 ## 2. SQL
 
+
+## 3. MPI
+
+- [collective communication](mpi/collective_com): Ejemplo de la comunicación colectiva en MPI.
+- [point to point communication](mpi/point2point_com): Ejemplo de la comunicación punto a punto en MPI.
+- [master slave](mpi/master_slave): Ejemplo de la comunicación maestro-esclavo en MPI.
