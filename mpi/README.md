@@ -2,7 +2,8 @@
 
 MPI (Message Passing Interface) é um sistema de passagem de mensagens padronizado e portátil projetado para funcionar em uma grande variedade de computadores paralelos.
 
-<img href="https://developer.nvidia.com/blog/benchmarking-cuda-aware-mpi/" src="https://developer-blogs.nvidia.com/wp-content/uploads/2013/03/LaunchMPI1.png" width="500">
+<a href="https://developer.nvidia.com/blog/benchmarking-cuda-aware-mpi/">
+<img src="https://developer-blogs.nvidia.com/wp-content/uploads/2013/03/LaunchMPI1.png" width="500"></a>
 
 
 ## Referências
