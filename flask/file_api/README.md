@@ -4,7 +4,8 @@
 
 - [Requirementos](#requerimentos)
 - [Descrição](#descrição)
-- [Rodar o projeto](#rodar-o-projeto)
+- [Rodar o projeto localmente](#rodar-o-projeto-localmente)
+- [Rodar o projeto com Docker](#rodar-o-projeto-com-docker)
 
 ---
 
@@ -30,16 +31,19 @@ Cliente faz uma solicitação para editar um .txt que já existe. O server faz a
 
 ---
 
-## Rodar o projeto
+## Rodar o projeto localmente
 
 1. Execute o arquivo [app.py](app.py) para iniciar o servidor.
 2. O arquivo [client_site](client_site.ipynb) contém um exemplo de como interagir com à API.
 
 --
 
-## Docker File
+## Rodar o projeto com Docker
 
-Para compilar a imagem do docker e rodar o container é necessário ter o docker instalado na máquina. Para instalar o docker, siga as instruções do site oficial: https://docker-curriculum.com/#introduction
+Para compilar a imagem do docker e rodar o container é necessário ter o docker instalado na máquina. Para instalar o docker, siga as instruções do site oficial: https://docker-curriculum.com/#introduction.
+
+As configurações do docker estão no arquivo [Dockerfile](Dockerfile).
+O arquivo [requirements.txt](requirements.txt) contém as bibliotecas necessárias para rodar o projeto.
 
 
 1. Para compilar a imagem do docker, execute o comando abaixo:
@@ -52,3 +56,5 @@ docker build -t yourusername/apifile .
 ```
 docker run -p 8888:5000 yourusername/apifile
 ```
+
+3. Para testar a API, acesse o endereço http://localhost:8888/ e siga as instruções do arquivo [client_site](client_site.ipynb).
