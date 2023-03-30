@@ -1,10 +1,10 @@
 """ 
     Master-slave example using MPI.
 """
-import time
+from mpi4py import MPI
+
 import taskmpi
 
-from mpi4py import MPI
 
 #import tensorflow as tf
 
