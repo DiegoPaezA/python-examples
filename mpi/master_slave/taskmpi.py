@@ -57,9 +57,6 @@ class TaskMPI():
         """
 
         requests = [self.comm.irecv(source=i, tag=10) for i in range(1, self.size)]
-        requests
-        for i in requests:
-            print(f"Requests: {i}")
 
         while not all(r is None for r in requests):
             for i in range(self.num_workers):

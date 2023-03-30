@@ -36,4 +36,5 @@ RUN pip3 install --user -U setuptools \
 # install dependencies
 RUN pip3 install --no-cache-dir -r requirements.txt
 
-CMD [$HOME/run.sh]
+#CMD ["tail -n 20 /dev/null"]
+CMD ["sh $HOME/run.sh"]

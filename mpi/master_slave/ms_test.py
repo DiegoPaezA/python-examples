@@ -53,6 +53,7 @@ def slave(comm):
     while True:
         # Waits for master to send parameters
         params = comm.recv(source=0, tag=11)
+        print(f"Worker {comm.Get_rank()} received params: {params}")
 
         if check_stop():
             # If master sends stop message, end things up.
