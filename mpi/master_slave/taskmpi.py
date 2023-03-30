@@ -12,7 +12,7 @@ class TaskMPI():
         
     def __call__(self):
         
-        self.send_data(generation=10)
+        self.send_data(generation=1)
         
         # Master does its own work...
         """
@@ -39,7 +39,8 @@ class TaskMPI():
         
         for worker in range(1, self.size):
             id_num = f'{generation}_{worker}'
-
+            print(f"Sending data to worker {worker} with id {id_num}")
+            
             args = {'id_num': id_num,
                     'net_list': decoded_nets[worker]}
 
@@ -56,8 +57,9 @@ class TaskMPI():
         """
 
         requests = [self.comm.irecv(source=i, tag=10) for i in range(1, self.size)]
-
-        print(requests)
+        requests
+        for i in requests:
+            print(f"Requests: {i}")
 
         while not all(r is None for r in requests):
             for i in range(self.num_workers):
