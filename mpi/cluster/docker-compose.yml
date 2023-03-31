@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  node1:
+    image: cluster_mpi
+    environment:
+      - MPI_RANK=0
+      - MPI_SIZE=3
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [node.hostname == node1]
+
+  node2:
+    image: cluster_mpi
+    environment:
+      - MPI_RANK=1
+      - MPI_SIZE=3
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [node.hostname == node2]
+
+  node3:
+    image: cluster_mpi
+    environment:
+      - MPI_RANK=2
+      - MPI_SIZE=3
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [node.hostname == node3]
