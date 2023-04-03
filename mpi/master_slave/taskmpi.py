@@ -1,6 +1,6 @@
 from mpi4py import MPI
 import numpy as np
-
+import time as time
 
 class TaskMPI():
     def __init__(self):
@@ -39,7 +39,7 @@ class TaskMPI():
         for worker in range(1, self.size):
             id_num = f'{generation}_{worker}'
             print(f"Sending data to worker {worker} with id {id_num}")
-            
+            time.sleep(1)
             args = {'id_num': id_num,
                     'net_list': decoded_nets[worker]}
 

@@ -2,7 +2,7 @@
     Master-slave example using MPI.
 """
 from mpi4py import MPI
-
+import time
 import taskmpi
 
 
@@ -28,9 +28,12 @@ def master(comm):
         comm: MPI.COMM_WORLD.
     """
     task_test = taskmpi.TaskMPI()
-    results = task_test()
+    results = task_test() # Send data to workers and receive results
     
-    print(f"Resultados: {results}")
+    print("Master does its own work...")
+    time.sleep(2)
+    results[0] = 10
+    print(f"Master Results: {results}")
     
     send_stop_signal(comm)
 
@@ -58,8 +61,9 @@ def slave(comm):
         if check_stop():
             # If master sends stop message, end things up.
             break
-
-        results = 2
+        print(f"Workers are working...")
+        time.sleep(1)
+        results = params['net_list']
         # Send results back to master.
         comm.send(results, dest=0, tag=10)
 

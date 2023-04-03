@@ -3,6 +3,8 @@ version: '3'
 services:
   node1:
     image: cluster_mpi
+    ports:
+      - 3000:3000
     environment:
       - MPI_RANK=0
       - MPI_SIZE=3
