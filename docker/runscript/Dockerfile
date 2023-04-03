@@ -2,9 +2,6 @@ FROM ubuntu:focal
 
 ENV USER mpitest
 ENV HOME /home/$USER
-ENV MPI_DIR=/opt/ompi
-ENV PATH="$MPI_DIR/bin:$HOME/.local/bin:$PATH"
-ENV LD_LIBRARY_PATH="$MPI_DIR/lib:$LD_LIBRARY_PATH"
 WORKDIR $HOME
 
 # Install any necessary packages
