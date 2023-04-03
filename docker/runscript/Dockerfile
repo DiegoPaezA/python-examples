@@ -11,8 +11,8 @@ RUN apt-get update && apt-get install -y \
 # Copy the script to the container
 
 
-COPY ./script.sh WORKDIR/
-RUN chmod +x WORKDIR/script.sh
+COPY ./script.sh $HOME/
+RUN chmod +x $HOME/script.sh
 # Set the entrypoint to the script with CMD arguments
 
-CMD ["sh", "WORKDIR/script.sh"]
+CMD ["sh", "script.sh"]
