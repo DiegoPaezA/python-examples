@@ -17,3 +17,7 @@ docker build -t webapp .
 ```bash
 docker run -d -p 80:5000 webapp
 ```
+
+## Test the container
+
+[http://localhost:80](http://localhost:80)
