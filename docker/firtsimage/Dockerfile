@@ -7,7 +7,7 @@ RUN pip3 install flask
 #RUN pip3 install flask-mysql
 
 # set the working directory in the container
-WORKDIR /opt/source-code
+WORKDIR /home/source-code
 COPY . .
 
 
