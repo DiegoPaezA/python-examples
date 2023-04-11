@@ -35,6 +35,7 @@ class TaskMPI():
         """
         requests = [None] * self.num_workers
         decoded_nets = list(range(0,self.size))
+        print(f"decoded_nets: {decoded_nets}, shape: {len(decoded_nets)}")
         
         for worker in range(1, self.size):
             id_num = f'{generation}_{worker}'
@@ -62,7 +63,7 @@ class TaskMPI():
                 if requests[i] is not None:
                     check_result = requests[i].test()
                     if check_result[0]:
-                        print(f'Received message from worker {i+1}!')
+                        print(f'Worker {i+1} done!')
                         results[i+1] = check_result[1]
                         requests[i] = None
 
