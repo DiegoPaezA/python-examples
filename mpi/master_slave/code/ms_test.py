@@ -27,7 +27,7 @@ def master(comm):
         args: dict with command-in-line parameters.
         comm: MPI.COMM_WORLD.
     """
-    task_test = taskmpi.TaskMPI()
+    task_test = taskmpi.TaskMPI() # Initialize task
     results = task_test() # Send data to workers and receive results
     
     print("Master does its own work...")
