@@ -1,5 +1,4 @@
 # CNN Tiny-VGG16 Nets
-
 NET_1:
   vgg_blocks: 1
   conv_layers: [2]

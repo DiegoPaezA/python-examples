@@ -1,5 +1,5 @@
 import yaml
-import os 
+import os
 
 def load_nets(net_file):
     """
@@ -19,6 +19,19 @@ def load_nets(net_file):
         
     return nets
 
+def load_params(param_file):
+    """
+    Load the parameters from a YAML file and return a dict with the parameters.
+    
+    Args:
+        param_file (str): path to the YAML file
+    Returns: 
+        params (dict): dictionary with the parameters
+    """
+    with open(param_file, 'r') as f:
+        params = yaml.safe_load(f)
+    return params
+
 def disable_tf_logging(level:int=1):
     """
     Disable tensorflow logging
@@ -31,10 +44,7 @@ def disable_tf_logging(level:int=1):
         3= ALL messages are removed.
     """
     os.environ['TF_CPP_MIN_LOG_LEVEL'] = str(level) 
-    
 
 # if __name__ == '__main__':
-#     nets = load_nets('cnn_nets/cnn_nets.yml')
-    
-    
-#     print(nets[2])
+#     nets = load_params('cnn_nets/cnn_params.yml')
+#     print(list(nets.keys()))

@@ -12,8 +12,6 @@ from tensorflow.keras.models import Model
 # Disable tensorflow logging
 hf.disable_tf_logging()
 
-print(f"Tensorflow version: {tf.__version__}")
-
 def vgg_block(layer_in, n_filters, n_conv):
     """
     This function creates a VGG block
@@ -56,9 +54,9 @@ def add_vgg_block(layer_in, net):
             layer_in = x
     return x
 
-def create_model(input_shape, num_classes, net):
+def create_vgg(input_shape, num_classes, net):
     """
-    This function creates a model
+    This function creates a tiny vgg model
 
     Args:
         input_shape (tuple): input shape of the model (height, width, channels)
@@ -78,7 +76,6 @@ def create_model(input_shape, num_classes, net):
     output_layer = Dense(num_classes, activation='softmax')(x)
     # define model
     model = Model(input_layer, output_layer)
-    print(model.summary())
     return model
 
 
@@ -90,7 +87,7 @@ def create_model(input_shape, num_classes, net):
     
 #     input_shape = (224,224,3)
 #     num_classes = 10
-#     test_model = create_model(input_shape,num_classes,net_3)
+#     test_model = create_vgg(input_shape,num_classes,net_3)
 
 
 
