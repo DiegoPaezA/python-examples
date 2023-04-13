@@ -1,0 +1,24 @@
+# CNN Tiny-VGG16 Nets
+
+NET_1:
+  vgg_blocks: 1
+  conv_layers: [2]
+  num_filters: [64]
+
+
+NET_2: 
+  vgg_blocks: 2
+  conv_layers: [2, 2]
+  num_filters: [64, 128]
+  
+
+NET_3:
+  vgg_blocks: 3
+  conv_layers: [2, 2, 3]
+  num_filters: [64, 128, 256]
+
+
+NET_4:
+  vgg_blocks: 4
+  conv_layers: [2, 2, 3, 3]
+  num_filters: [64, 128, 256, 512]
