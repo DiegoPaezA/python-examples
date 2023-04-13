@@ -47,9 +47,6 @@ def add_vgg_block(layer_in, net):
     n_filters = net['num_filters'] # number of filters
     
     for i in range(n_vgg_blocks):
-        if n_vgg_blocks == 1:
-            x = vgg_block(layer_in, n_filters[i], n_conv[i])
-        else:
             x = vgg_block(layer_in, n_filters[i], n_conv[i])
             layer_in = x
     return x
@@ -76,6 +73,7 @@ def create_vgg(input_shape, num_classes, net):
     output_layer = Dense(num_classes, activation='softmax')(x)
     # define model
     model = Model(input_layer, output_layer)
+    #print(model.summary())
     return model
 
 
@@ -87,7 +85,7 @@ def create_vgg(input_shape, num_classes, net):
     
 #     input_shape = (224,224,3)
 #     num_classes = 10
-#     test_model = create_vgg(input_shape,num_classes,net_3)
+#     test_model = create_vgg(input_shape,num_classes,net_1)
 
 
 
