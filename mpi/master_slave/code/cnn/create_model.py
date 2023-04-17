@@ -7,6 +7,7 @@ import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras.layers import Dense, Input, Conv2D, MaxPool2D, GlobalAveragePooling2D
 from tensorflow.keras.models import Model
+from tensorflow.keras.layers.experimental import preprocessing
 
 
 # Disable tensorflow logging
@@ -53,7 +54,8 @@ def add_vgg_block(layer_in, net):
 
 def create_vgg(input_shape, num_classes, net):
     """
-    This function creates a tiny vgg model
+    This function creates a tiny vgg model, based on the architecture defined in the net dictionary.
+    The data received is normalized in the preprocessing layer of the model.
 
     Args:
         input_shape (tuple): input shape of the model (height, width, channels)
@@ -65,28 +67,42 @@ def create_vgg(input_shape, num_classes, net):
     """
     # define model input
     input_layer = Input(input_shape)
+    # add preprocessing layer
+    x= preprocessing.Rescaling(1./255)(input_layer)
     # add vgg blocks
     x= add_vgg_block(input_layer, net)
     # add global average pooling layer
     x = GlobalAveragePooling2D()(x)
     # add classifier
-    output_layer = Dense(num_classes, activation='softmax')(x)
+    output_layer = Dense(num_classes, activation='softmax', dtype=tf.float32)(x)
     # define model
     model = Model(input_layer, output_layer)
+ 
     #print(model.summary())
     return model
 
 
 # if __name__ == '__main__':
     
-#     net_1 = {'vgg_blocks': 1, 'conv_layers': [2], 'num_filters': [64]}
-#     net_2 = {'vgg_blocks': 2, 'conv_layers': [2, 2], 'num_filters': [64, 128]}
-#     net_3 = {'vgg_blocks': 3, 'conv_layers': [2, 2, 3], 'num_filters': [64, 128, 256]}
-    
-#     input_shape = (224,224,3)
+#     net = hf.load_nets("/home/diripar8/python-examples/mpi/master_slave/code/cnn_nets/cnn_nets.yml")
+#     params = hf.load_params("/home/diripar8/python-examples/mpi/master_slave/code/cnn_nets/cnn_params.yml")
+#     params = params[0]
 #     num_classes = 10
-#     test_model = create_vgg(input_shape,num_classes,net_1)
+#     (x_train, y_train), (x_test, y_test) = keras.datasets.cifar10.load_data()
 
-
-
-
+#     # Normalization is donde in create vgg function
+#     model = create_vgg(x_train.shape[1:], num_classes, net[0])
+#     print(model.summary())
+    
+#     model.compile(optimizer=keras.optimizers.Adam(learning_rate=params['lr']),
+#                   loss=params['loss'],
+#                   metrics=['accuracy'])
+    
+#     # # Train model
+#     print("Training model...")
+#     model.fit(x_train, y_train, 
+#               epochs=params['epochs'],
+#               validation_data=(x_test, y_test),
+#               batch_size=params['batch_size'], 
+#               verbose=1)
+#     print("Model trained")
