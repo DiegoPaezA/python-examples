@@ -4,7 +4,9 @@
 from mpi4py import MPI
 import time
 import taskmpi
-
+from cnn import train
+import helper_functions as hf
+from tensorflow import keras
 
 #import tensorflow as tf
 
@@ -27,13 +29,20 @@ def master(comm):
         args: dict with command-in-line parameters.
         comm: MPI.COMM_WORLD.
     """
-    task_test = taskmpi.TaskMPI() # Initialize task
-    results = task_test() # Send data to workers and receive results
     
-    print("Master does its own work...")
-    time.sleep(2)
-    results[0] = 10
-    print(f"Master Results: {results}")
+    # Load Data
+    num_classes = 10
+    train_data, test_data = keras.datasets.cifar10.load_data()
+    
+    # Load nets and params
+    nets = hf.load_nets("cnn_nets/cnn_nets.yml")
+    params = hf.load_params("cnn_nets/cnn_params.yml")
+    
+    # Initialize task
+    task_test = taskmpi.TaskMPI()
+    # Send data to workers and receive results
+    results = task_test(train_data, test_data, num_classes, nets, params)
+    
     
     send_stop_signal(comm)
 
@@ -62,8 +71,9 @@ def slave(comm):
             # If master sends stop message, end things up.
             break
         print(f"Worke {comm.Get_rank()} is working...")
-        time.sleep(1)
-        results = params['net_list']
+        #time.sleep(1)
+        #results = train.calculate_fitness(params)
+        results = 1
         # Send results back to master.
         comm.send(results, dest=0, tag=10)
 

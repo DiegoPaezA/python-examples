@@ -2,6 +2,7 @@ from mpi4py import MPI
 import numpy as np
 import time as time
 
+
 class TaskMPI():
     def __init__(self):
         
@@ -9,7 +10,7 @@ class TaskMPI():
         self.size = self.comm.Get_size()
         self.num_workers = self.size - 1
         
-    def __call__(self):
+    def __call__(self, train_data, test_data, num_classes, nets, params):
         
         self.send_data(generation=1)
         
@@ -20,6 +21,7 @@ class TaskMPI():
         pop_size = self.size
 
         evaluations = np.zeros(shape=(pop_size,))
+        evaluations[0] = 0.0
         
         # Master starts receiving results...
         self.receive_data(results=evaluations)
