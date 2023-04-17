@@ -29,7 +29,11 @@ def load_params(param_file):
         params (dict): dictionary with the parameters
     """
     with open(param_file, 'r') as f:
-        params = yaml.safe_load(f)
+        param = yaml.safe_load(f)
+    params_keys = list(param.keys())
+    params = []
+    for key in params_keys:
+        params.append(param[key])
     return params
 
 def disable_tf_logging(level:int=1):
@@ -46,5 +50,5 @@ def disable_tf_logging(level:int=1):
     os.environ['TF_CPP_MIN_LOG_LEVEL'] = str(level) 
 
 # if __name__ == '__main__':
-#     nets = load_params('cnn_nets/cnn_params.yml')
-#     print(list(nets.keys()))
+#      params = load_params('cnn_nets/cnn_params.yml')
+#      print(params)
