@@ -1,10 +1,10 @@
 #Importing required libararies
-from utils import disable_tf_logging
+from cnn.utils import disable_tf_logging
 
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import mixed_precision
-from create_model import create_vgg
+from cnn.create_model import create_vgg
 
 # Enable mixed precision
 mixed_precision.set_global_policy('mixed_float16')

@@ -1,6 +1,5 @@
 #Importing required libararies
-import sys
-from utils import disable_tf_logging
+from cnn.utils import disable_tf_logging
 
 import tensorflow as tf
 from tensorflow import keras
