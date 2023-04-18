@@ -1,7 +1,7 @@
 from mpi4py import MPI
 import numpy as np
 import time as time
-
+from cnn import train
 
 class TaskMPI():
     def __init__(self):
@@ -12,16 +12,18 @@ class TaskMPI():
         
     def __call__(self, train_data, test_data, num_classes, nets, params):
         
-        self.send_data(generation=1)
+        generation = 1
+        self.send_data(generation , train_data, test_data, num_classes, nets, params)
         
         # Master does its own work...
         """
         code: master work
         """
-        pop_size = self.size
+        pop_size = len(nets)
 
         evaluations = np.zeros(shape=(pop_size,))
-        evaluations[0] = 0.0
+        evaluations[0] = train.calculate_fitness(train_data, test_data, num_classes, 
+                                                 nets[0], params[0])
         
         # Master starts receiving results...
         self.receive_data(results=evaluations)
@@ -29,22 +31,21 @@ class TaskMPI():
         return evaluations
 
 
-    def send_data(self, generation=0):
+    def send_data(self, generation,train_data, test_data, num_classes, nets,params):
         """ Send data to dest with tag.
 
         Args:
             data: data to send.
         """
         requests = [None] * self.num_workers
-        decoded_nets = list(range(0,self.size))
-        print(f"decoded_nets: {decoded_nets}, shape: {len(decoded_nets)}")
-        
+                
         for worker in range(1, self.size):
             id_num = f'{generation}_{worker}'
             print(f"Sending data to worker {worker} with id {id_num}")
-            time.sleep(1)
+            
             args = {'id_num': id_num,
-                    'net_list': decoded_nets[worker]}
+                    'net_list': nets[worker],
+                    "params": params[0]}
 
             requests[worker - 1] = self.comm.isend(args, dest=worker, tag=11)
             
