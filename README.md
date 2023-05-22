@@ -2,6 +2,8 @@
 
 Este repositorio contiene ejemplos básicos de Python. Los ejemplos están organizados en carpetas de acuerdo a la tecnología que se utiliza en cada uno de ellos.
 
+Más información sobre Python en [python.org](https://www.python.org/).
+
 ## 1. [Flask](flask)
 
 - [file api](flask/file_api): Ejemplo de la creación de una API con Flask que permite crear, leer y escribir archivos en el sistema de archivos del servidor - test in wsl. Adicionalmente incluye un archivo `Dockerfile` para crear una imagen de Docker con la API.
