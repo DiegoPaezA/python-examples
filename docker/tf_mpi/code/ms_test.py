@@ -4,6 +4,7 @@
 from mpi4py import MPI
 import taskmpi
 from cnn import train
+from cnn.utils import load_CIFAR10
 import helper_functions as hf
 from tensorflow import keras
 
@@ -77,8 +78,8 @@ def main():
     
     # Load Data
     num_classes = 10
-    train_data, test_data = keras.datasets.cifar10.load_data()
-
+    train_data, test_data = load_CIFAR10("cifar-10-batches-py")
+    
     comm = MPI.COMM_WORLD
     rank = comm.Get_rank()
 
