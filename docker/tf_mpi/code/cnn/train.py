@@ -1,5 +1,6 @@
 #Importing required libararies
 from cnn.utils import disable_tf_logging
+#from cnn.utils import load_CIFAR10
 
 import tensorflow as tf
 from tensorflow import keras
@@ -60,25 +61,35 @@ def calculate_fitness(train_data, test_data, num_classes, net, params):
     return fitness, history;
 
 # if __name__ == '__main__':
-    # Read parameters
+#     #Read parameters
     
-    # Load data - CIFAR10
-    # num_classes = 10
-    # train_data, test_data = keras.datasets.cifar10.load_data()
+#     #Load data - CIFAR10
+#     num_classes = 10
     
-    # # Load nets and params
-    # net = hf.load_nets("/home/diripar8/python-examples/mpi/master_slave/code/cnn_nets/cnn_nets.yml")
-    # params = hf.load_params("/home/diripar8/python-examples/mpi/master_slave/code/cnn_nets/cnn_params.yml")  
-    # fitness_results = []
-    # history_results = []
+#     # Load data from keras datasets
+#     (x_train, y_train), (x_test, y_test) = keras.datasets.cifar10.load_data()
+#     print("Train data shape: ", x_train.shape)
+#     print("Test data shape: ", x_test.shape)
     
-    # # Calculate fitness
-    # for i in range(len(net)):
-    #     fitness, history = calculate_fitness(train_data,test_data,num_classes,net[1], params[0])
-    #     fitness_results.append(fitness)
-    #     history_results.append(history)
-    #     print(f"Fitness of Net_{i+1}: {fitness}")
+#     (xtrain, ytrain), (xtest, ytest) = load_CIFAR10("cifar-10-batches-py")
+    
+#     print("Train data shape: ", xtrain.shape)
+#     print("Test data shape: ", xtest.shape)
+    
+    
+#     # Load nets and params
+#     # net = hf.load_nets("/home/diripar8/python-examples/mpi/master_slave/code/cnn_nets/cnn_nets.yml")
+#     # params = hf.load_params("/home/diripar8/python-examples/mpi/master_slave/code/cnn_nets/cnn_params.yml")  
+#     # fitness_results = []
+#     # history_results = []
+    
+#     # Calculate fitness
+#     # for i in range(len(net)):
+#     #     fitness, history = calculate_fitness(train_data,test_data,num_classes,net[1], params[0])
+#     #     fitness_results.append(fitness)
+#     #     history_results.append(history)
+#     #     print(f"Fitness of Net_{i+1}: {fitness}")
         
-    # print("\n Results Resume:")    
-    # for i in range(len(fitness_results)):
-    #     print(f"Fitness of Net_{i+1}: {fitness_results[i]}")
+#     # print("\n Results Resume:")    
+#     # for i in range(len(fitness_results)):
+#     #     print(f"Fitness of Net_{i+1}: {fitness_results[i]}")
