@@ -1,6 +1,6 @@
 #!/bin/sh
 echo "Running master_slave example"
-mpirun -n 4 python3 ms_test.py
+mpirun -n 4 -mca orte_base_help_aggregate 0 -mca btl_base_warn_component_unused 0 python3 ms_test.py
 
 #python3 tf_test.py
 

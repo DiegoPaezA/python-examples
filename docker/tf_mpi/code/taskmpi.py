@@ -63,7 +63,6 @@ class TaskMPI():
         Returns:
             modified ndarray containing the received results.
         """
-
         requests = [self.comm.irecv(source=i, tag=10) for i in range(1, self.size)]
 
         while not all(r is None for r in requests):
