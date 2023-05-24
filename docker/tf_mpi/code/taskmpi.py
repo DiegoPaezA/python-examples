@@ -13,7 +13,7 @@ class TaskMPI():
     def __call__(self, train_data, test_data, num_classes, nets, params):
         
         generation = 1
-        self.send_data(generation , train_data, test_data, num_classes, nets, params)
+        
         
         # Master does its own work...
         """
@@ -22,11 +22,16 @@ class TaskMPI():
         pop_size = len(nets)
 
         evaluations = np.zeros(shape=(pop_size,))
-        evaluations[0] = train.calculate_fitness(train_data, test_data, num_classes, 
+        try:
+            self.send_data(generation , train_data, test_data, num_classes, nets, params)
+            evaluations[0] = train.calculate_fitness(train_data, test_data, num_classes, 
                                                  nets[0], params[0])
         
-        # Master starts receiving results...
-        self.receive_data(results=evaluations)
+            # Master starts receiving results...
+            self.receive_data(results=evaluations)
+        except:
+            print("Master failed")
+            self.comm.Abort()    
         
         return evaluations
 
