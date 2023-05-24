@@ -6,7 +6,6 @@ import taskmpi
 from cnn import train
 from cnn.utils import load_CIFAR10
 import helper_functions as hf
-from tensorflow import keras
 
 #import tensorflow as tf
 
@@ -61,13 +60,11 @@ def slave(comm, train_data, test_data, num_classes):
     while True:
         # Waits for master to send parameters
         params = comm.recv(source=0, tag=11)
-        #print(f"Worker {comm.Get_rank()} received params: {params}")
-        #print(params)
 
         if check_stop():
             # If master sends stop message, end things up.
             break
-        print(f"Worke {comm.Get_rank()} is working...")
+        print(f"Worker {comm.Get_rank()} is working...")
         #time.sleep(1)
         results = train.calculate_fitness(train_data, test_data, num_classes, params['net_list'], params['params'])
         #results = 1

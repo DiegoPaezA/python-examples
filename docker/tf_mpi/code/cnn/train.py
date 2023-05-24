@@ -1,11 +1,11 @@
 #Importing required libararies
 from cnn.utils import disable_tf_logging
-#from cnn.utils import load_CIFAR10
 
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import mixed_precision
 from cnn.create_model import create_vgg
+import time
 
 # Enable mixed precision
 mixed_precision.set_global_policy('mixed_float16')
@@ -49,13 +49,17 @@ def calculate_fitness(train_data, test_data, num_classes, net, params):
                   loss=params['loss'],
                   metrics=['accuracy'])
     # Train model
+    train_start = time.perf_counter()
     print("Training model...")
+    
     history = model.fit(x_train, y_train, 
               epochs=params['epochs'],
               validation_data=test_data,
               batch_size=params['batch_size'], 
               verbose=0)
-    print("Model trained")
+    
+    total_time =  round((time.perf_counter() - train_start) / 60.0,2)
+    print(f"Training time: {total_time} minutes")
     # Evaluate model
     _, fitness = model.evaluate(x_test, y_test, verbose=0)
     return fitness
