@@ -27,7 +27,7 @@ def vgg_block(layer_in, n_filters, n_conv):
     for _ in range(n_conv):
         layer_in = Conv2D(n_filters, (3,3), padding='same', activation='relu')(layer_in)
     # add max pooling layer
-    layer_in = MaxPool2D((2,2), strides=(2,2))(layer_in)
+    layer_in = MaxPool2D((2,2),padding='same')(layer_in)
     return layer_in
 
 def add_vgg_block(layer_in, net):
