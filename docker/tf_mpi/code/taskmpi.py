@@ -25,7 +25,7 @@ class TaskMPI():
         try:
             self.send_data(generation , train_data, test_data, num_classes, nets, params)
             evaluations[0] = train.calculate_fitness(train_data, test_data, num_classes, 
-                                                 nets[0], params[0])
+                                                 nets[0], params[0], worker=0)
         
             # Master starts receiving results...
             self.receive_data(results=evaluations)
@@ -46,7 +46,7 @@ class TaskMPI():
                 
         for worker in range(1, self.size):
             id_num = f'{generation}_{worker}'
-            print(f"Sending data to worker {worker} with id {id_num}")
+            #print(f"Sending data to worker {worker} with id {id_num}")
             
             args = {'id_num': id_num,
                     'net_list': nets[worker],

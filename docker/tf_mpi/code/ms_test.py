@@ -64,9 +64,10 @@ def slave(comm, train_data, test_data, num_classes):
         if check_stop():
             # If master sends stop message, end things up.
             break
-        print(f"Worker {comm.Get_rank()} is working...")
+        #print(f"Worker {comm.Get_rank()} is working...")
+        actual_worker = comm.Get_rank()
         #time.sleep(1)
-        results = train.calculate_fitness(train_data, test_data, num_classes, params['net_list'], params['params'])
+        results = train.calculate_fitness(train_data, test_data, num_classes, params['net_list'], params['params'], actual_worker)
         #results = 1
         # Send results back to master.
         comm.send(results, dest=0, tag=10)
